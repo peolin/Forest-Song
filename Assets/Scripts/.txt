@@ -1,0 +1,25 @@
+    private void Clicked(InputAction.CallbackContext context){
+        Debug.Log("Clicked");
+        // Collider2D collider = gameObject.GetComponent<Collider2D>(); // get attached collider
+        // collider.enabled = true;
+
+        if (gameObject.GetComponent<Collider2D>() != null)
+        {
+            //Collider2D collider = gameObject.GetComponent<Collider2D>(); // get attached collider
+
+            UnityEngine.Vector2 mousePos = new UnityEngine.Vector2(0f, 0f);
+            //UnityEngine.Vector3 mp = new UnityEngine.Vector3(context.mousePosition.x, context.mousePosition.y, 0f);
+
+            // контекст не показывает точку на сцене!!!!
+            
+            mousePos = context.ReadValue<UnityEngine.Vector2>();
+
+            Debug.Log(mousePos + " " + context.ReadValue<UnityEngine.Vector2>() + " Change scenes");
+
+            if(gameObject.GetComponent<Collider2D>().OverlapPoint(mousePos)){ // can't use method to see overlap
+                Debug.Log("Overlap");
+            }
+            else Debug.Log("No overlap");
+        }
+        else Debug.Log("No collider.");
+    }
